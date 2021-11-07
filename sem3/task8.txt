@@ -1,0 +1,13 @@
+CheckUniModal(Arr, low, high){
+    if (low == high) return Arr[low]
+    else if (high == low + 1) return max(Arr[low], Arr[high])
+    else{
+        mid = (low + high) / 2
+
+        if (Arr[mid - 1] < Arr[mid] and Arr[mid] > Arr[mid + 1]) return Arr[mid]
+
+        else if (Arr[mid - 1] < Arr[mid] and Arr[mid] < Arr[mid + 1]) return CheckUniModal(Arr, mid, high)
+
+        else return CheckUniModal(Arr, low, mid)
+    }
+}

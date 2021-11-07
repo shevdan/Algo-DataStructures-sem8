@@ -1,0 +1,55 @@
+TripleMerge(left, mid, right):
+
+1 let A be the final sorted array
+2 l = m = r = 0
+
+3  while l < len(left) and m < len(mid) and r < len(right):
+4 	 if left[l] > mid[m]:
+5 		 if left[l] > right[r]:
+6 			 add left[l] to A
+7 			 l = l + 1
+8		 else:
+9 			 add right[r] to A
+10			 r = r + 1
+11	 else:
+12		 if mid[m] > right[r]:
+13 			 add mid[m] to A
+14			 m = m + 1
+15 		 else:
+16			 add right[r] to A
+17			 r = r + 1
+
+18 while l < len(left) and m < len(mid):
+19 	if left[l] > mid[m]:
+20 		add left[l] to A
+21 		l = l + 1
+22	else:
+23		add mid[m] to A
+24		m = m + 1
+
+25 while m < len(mid) and r < len(right):
+26 	if mid[m] > right[r]:
+27 		add mid[m] to A
+28 		m = m + 1
+29	else:
+30		add right[r] to A
+31		r = r + 1
+
+32 while l < len(left) and r < len(right):
+33 	if left[l] > right[r]:
+34 		add left[l] to A
+35 		l = l + 1
+36	else:
+37		add right[r] to A
+38		r = r + 1
+
+39 if l = len(left) and m = len(mid):
+40	add remaining elements of right to A
+
+41 if m = len(mid) and r = len(right):
+42	add remaining elements of left to A
+
+43 if l = len(left) and r = len(right):
+44	add remaining elements of mid to A
+
+45 return A

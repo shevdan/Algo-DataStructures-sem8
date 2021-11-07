@@ -1,0 +1,36 @@
+Merge(left, right, sorted_lst):
+
+1  i, j, k = 0, 0, 0
+2  while i < len(left) and j < len(right):
+3      if left[i] <= right[j]:
+4          sorted_lst[k] = left[i]
+5          i = i + 1
+6      else:
+7          sorted_lst[k] = right[j]
+8      k = k + 1
+9  while i < len(left):
+10     sorted_lst[k] = left[i]
+11     i = i + 1
+12     k = k + 1
+13 while j < len(right):
+14     sorted_lst[k] = right[j]
+15 return sorted_lst
+
+
+Mergesort(arr):
+
+1  if len(arr) > 1:
+2      mid = len(arr) // 2
+3      left = mergesort(arr[:mid])
+4      right = mergesort(arr[mid:])
+5      return Merge(left, right, arr)
+
+
+Min_pair_arr(arr):
+
+1  Sort arr with Mergesort
+2  min_pair = abs(arr[1] - arr[0]), arr[1], arr[0]
+3  for i = 1 to len(arr):
+4      if abs(arr[i] - arr[i-1]) < min_pair[0]:
+5          min_pair = abs(arr[i] - arr[i-1]), arr[i-1], arr[i]
+6  return min_pair[1:]

@@ -1,0 +1,42 @@
+d-ARY-PARENT(i)
+    return floor((i - 2) / d + 1)
+
+d-ARY-CHILD(i, j)
+    return d(i − 1) + j + 1
+
+d-ARY-HEAP-EXTRACT-MAX(A)           O(logd(n))
+    if A.heap-size < 1
+        error "heap under flow"
+    max = A[1]
+    A[1] = A[A.heap-size]
+    A.heap-size = A.heap-size - 1
+    d-ARY-MAX-HEAPIFY(A, 1)
+    return max
+
+d-ARY-MAX-HEAPIFY(A, i)         O(logd(n))
+    largest = i
+    for k = 1 to d
+        if d-ARY-CHILD(k, i) ≤ A.heap-size and A[d-ARY-CHILD(k, i)] > A[i]
+            if A[d-ARY-CHILD(k, i)] > A[largest]
+                largest = d-ARY-CHILD(k, i)
+    if largest != i
+        exchange A[i] with A[largest]
+        d-ARY-MAX-HEAPIFY(A, largest)
+
+
+d-ARY-MAX-HEAP-INSERT(A, key)       O(logd(n))
+    A.heap-size = A.heap-size + 1
+    A[A.heap-size] = key
+    i = A.heap-size
+    while i > 1 and A[d-ARY-PARENT(i) < A[i]]
+        exchange A[i] with A[d-ARY-PARENT(i)]
+        i = d-ARY-PARENT(i)
+
+
+d-ARY-INCREASE-KEY(A, i, key)       O(logd(n))
+    if key < A[i]
+        error "new key is smaller than current key"
+    A[i] = key
+    while i > 1 and A[d-ARY-PARENT(i) < A[i]]
+        exchange A[i] with A[d-ARY-PARENT(i)]
+        i = d-ARY-PARENT(i)

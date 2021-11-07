@@ -1,0 +1,122 @@
+
+FindIntersection(line1, line2){   // y = kx + b
+    return (line2.b - line1.b) / (line1.k - line2.k)
+}
+
+
+
+
+Mergesort(Lines: list){
+    if (len(Lines) > 3){
+        firstHalf = Lines[:len(Lines)/2]
+        secondHalf = Lines[len(Lines)/2:]
+        return Merge( Mergesort(firstHalf), Mergesort(secondHalf))
+    }
+    else if (len(Lines) == 3){
+        l0, l1, l2 = Lines[0], Lines[1], Lines[2]
+        first_second_intersection = FindIntersection(l0, l1)
+        first_third_intersection = FindIntersection(l0, l3)
+        if first_second_intersection > first_third_intersection{
+            Lines.remove(l1)
+        }
+        else{
+            Lines.remove(2)
+        }
+    }
+
+    else{
+        l0, l1 = Lines[0], Lines[1]
+        if (l0.k == l1.k){
+            if (l0.b > l1.b){
+                Lines.remove(1)
+            }
+            else{
+                Lines.remove(0)
+            }
+        }
+    }
+
+    return Lines
+}
+
+Merge(firstHalf, secondHalf){
+    // merge sorted lists
+
+    Lines = []
+    i, j = 0, 0
+    while (i < len(firstHalf) && j < len(secondHalf)) {
+        l1, l2 = firstHalf[i], secondHalf[j]
+        if (l1.k < l2.k){
+            Lines.append(l1)
+            i++
+        }
+        else if (l1.k == l2.k){
+            if (l1.b > l2.b) 
+                Lines.append(l1)
+            else
+                Lines.append(l2)
+            i++
+            j++
+        }
+        else{           //l1.k > l2.k
+            Lines.append(l2)
+            j++
+        }
+    }
+    while (i < len(firstHalf)){
+        Lines.append(firstHalf[i])
+        i++
+    }
+    while (j < len(secondHalf){
+        Lines.append(secondHalf[j])
+        j++
+    }
+
+    // find visible Lines
+
+    visible = []
+
+    // Initialize to first two lines in lines
+    // We know there are at least two elements, since this is a call to merge
+
+    visible.append(Lines.remove(0))
+    visible.append(Lines.remove(0))
+
+    numVisible = 2
+    for (line in Line){
+        lastLine = visible[numVisible - 1]
+        secondLastLine = visible[numVisible - 2]
+
+        prevIntersection = FindIntersection(secondLastLine, lastLine)
+        currIntersection = FindIntersection(secondLastLine, line)
+
+        while (currIntersection < prevIntersection){
+            // This means line intersects the next to last line before the last line
+            // Since line has a greater slope than lastLine, this means lastLine is not visible
+
+            visible.remove(numVisible - 1)
+            numVisible--
+            
+            if (numVisible == 1){
+                break
+            }
+
+            lastLine = visible[numVisible - 1]
+            secondLastLine = visible[numVisible - 2]
+
+            prevIntersection = FindIntersection(secondLastLine, lastLine)
+            currIntersection = FindIntersection(secondLastLine, line)
+        }
+        // line has greatest slope seen thus far, so it is visible over
+        // (interesect(line, lastLine), INFINITY). Add line to visibleLines.
+
+        visible.append(line)
+        numVisible++
+    }
+    // While the above loop "looks" like it is O(n^2), at each O(1) step
+    // a line is either added or removed from visibleLines, and we never 
+    // add and remove the same line from the list more than once
+
+    return visible
+
+}
