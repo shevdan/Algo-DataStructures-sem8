@@ -1,2 +1,3 @@
-# Algo-DataStructures-sem8
-Seminar 8 week ADS tasks
+# Algorithms-DataStructures
+Tasks of all the weeks of ADS course @ UCU
+
