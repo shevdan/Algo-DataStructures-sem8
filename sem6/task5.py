@@ -11,7 +11,7 @@ def pairs(lst):
                 dct[prod] = (lst[i], lst[j])
             else:
                 res.add((dct[prod], (lst[i], lst[j])))
-                # res.add((lst[i], lst[j]))
+
     
     return res
 

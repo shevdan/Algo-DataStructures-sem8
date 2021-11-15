@@ -3,6 +3,7 @@ class Node:
         self.data = data
         self.left = left
         self.right = right
+        self.parent = parent
 
 class BST:
     def __init__(self) -> None:

@@ -8,5 +8,5 @@ def events(S, S_1):
     
     return cnt == len(S_1)
 
-print(events("ABCBD", "BACBD"))
+print(events("ABCBD", "BCBD"))
 

@@ -2,11 +2,16 @@
 def solve(r_lst):
     r = sorted(r_lst, reverse=True)
 
-    sum = 0
+    first_idx = {}
+    for i in range(len(r_lst)):
+        first_idx[r_lst[i]] = i
+
+
+    license = []
     for i in range(len(r)):
-        sum += r[i] ** i
+        license.append(first_idx[r[i]])
     
-    return sum
+    return license
 
 
 if __name__ == "__main__":

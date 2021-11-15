@@ -12,6 +12,9 @@ def solve(s: str, t:str) -> str:
     min_sub = [0, float("inf")]
     dct_s = dict()
 
+    #s = "ADOBECODEBANC"
+    #t = "ABC"
+
     for right in range(len(s)):
         letter = s[right]
 
